@@ -26,14 +26,15 @@ def load_json(filename):
 
 databases = {
 "prod": 'https://api.medulina.com/api/v1/',
-"dev": 'https://testapi.medulina.com/api/v1/'
+"dev": 'https://testapi.medulina.com/api/v1/',
+"local": 'http://localhost:5000/api/v1/'    
 }
 
 def upload_to_mindR(imgPath, task, subject, username, password, database="prod"):
     api_token = "NnrP65CXaSnZ0aLPZ8Ox64d0pDlSKS0R8wpymwLr"
     # this code assumes that the jpg, the json describing it,
     # and the mask file have the same name with different extenstions
-    url = databases[database]
+    url = databases[database] if database in databases else database
     i = Path(imgPath)
     j = i.with_suffix('.json')
 
